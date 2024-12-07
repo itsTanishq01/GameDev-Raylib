@@ -15,7 +15,7 @@ int main() {
 
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
-    detectiveIdle = LoadTexture("./src/idle/Run_01.png");
+    detectiveIdle = LoadTexture("../assets/idle/Run_01.png");
     SetTargetFPS(60);
 
     while (!WindowShouldClose()) {
