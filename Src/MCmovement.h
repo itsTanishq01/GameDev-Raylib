@@ -14,6 +14,7 @@ struct Character {
     int currentDirection;
     float animationTimer;
     Vector2 position;
+    Rectangle collisionBox;
 };
 
 void InitCharacter(Character& character, Vector2 startPosition);

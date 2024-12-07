@@ -9,6 +9,7 @@ void InitCharacter(Character& character, Vector2 startPosition) {
     character.currentDirection = 0;
     character.animationTimer = 0.0f;
     character.position = startPosition;
+    character.collisionBox = { startPosition.x, startPosition.y, SPRITE_WIDTH, SPRITE_HEIGHT };
 }
 
 void UpdateCharacter(Character& character) {
@@ -44,6 +45,9 @@ void UpdateCharacter(Character& character) {
     else {
         character.currentFrame = 0;
     }
+
+    character.collisionBox.x = character.position.x;
+    character.collisionBox.y = character.position.y;
 }
 
 void DrawCharacter(const Character& character) {
@@ -62,6 +66,15 @@ void DrawCharacter(const Character& character) {
     };
     Vector2 origin = { 0.0f, 0.0f };
     DrawTexturePro(currentSpriteSheet, sourceRec, destRec, origin, 0.0f, WHITE);
+
+    // Draw collision box (for debugging purposes)
+    DrawRectangleLines(
+        character.collisionBox.x,
+        character.collisionBox.y,
+        character.collisionBox.width,
+        character.collisionBox.height,
+        RED
+    );
 }
 
 void UnloadCharacter(Character& character) {
