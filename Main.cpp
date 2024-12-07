@@ -1,13 +1,21 @@
 #include "raylib.h"
 
+
+
+Texture2D detectiveIdle;
+
 void DrawSprite(int x, int y);
 int main() {
     int screenWidth = 800;
     int screenHeight = 450;
     float MoveSpeed = 3.0f;
     int Position[2] = {screenWidth/2,screenHeight/2}; //2d Array for Sprite Position
+     //Load Texture
+
+
+
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
- 
+    detectiveIdle = LoadTexture("./src/idle/Run_01.png");
     SetTargetFPS(60);
 
     while (!WindowShouldClose()) {
@@ -21,7 +29,7 @@ int main() {
 
         BeginDrawing();
     
-        ClearBackground(RAYWHITE);
+        ClearBackground(BLACK);
 
         //Checking Bounds For Screen
         if(Position[1] > screenHeight -50){
@@ -39,10 +47,11 @@ int main() {
     }
 
     CloseWindow();
+    //UnloadTexture(detectiveIdle);
 
     return 0;
 }
 void DrawSprite(int x, int y){
     //For Now We Draw A circle
-    DrawCircle(x,y,10,RED);
+    DrawTexture(detectiveIdle,x,y,RAYWHITE);
 }
