@@ -18,4 +18,4 @@ MCMovement is a simple 2D character movement and animation system built with [ra
 1. Clone the repository or download the source code files.
 
    ```bash
-   git clone https://github.com/itsTanishq01/MCMovement.git
+   git clone https://github.com/itsTanishq01/GameDev-Raylib
