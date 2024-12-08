@@ -1,6 +1,4 @@
-# MCMovement - 2D Character Movement and Animation
-
-MCMovement is a simple 2D character movement and animation system built with [raylib](https://www.raylib.com/), a C library for making games. This project allows for character movement in four directions (up, left, down, right) with an animated sprite for each direction.
+# Detective game
 
 ## Features
 - 2D character movement with `WASD` controls.
