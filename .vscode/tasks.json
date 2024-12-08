@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Build C++",
+        "type": "shell",
+        "command": "g++",
+        "args": [
+          "-g",
+          "main.cpp",
+          "-o",
+          "main",
+          "-I",
+          "C:/Users/vivek/vcpkg/installed/x64-windows/include", // Update with your path
+          "-L",
+          "C:/Users/vivek/vcpkg/installed/x64-windows/lib",     // Update with your path
+          "-lraylib",
+          "-lopengl32",
+          "-lgdi32",
+          "-lwinmm"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": ["$gcc"]
+      }
+    ]
+  }
+  

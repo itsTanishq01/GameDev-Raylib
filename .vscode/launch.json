@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Launch Program",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/main.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [
+    { "name": "PATH", "value": "C:/Users/vivek/vcpkg/installed/x64-windows/bin;${env:PATH}" }
+]
+,
+        "externalConsole": true,
+        "MIMode": "gdb",
+        "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe",
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+        ],
+        "preLaunchTask": "Build C++"
+      }
+    ]
+  }
+  
