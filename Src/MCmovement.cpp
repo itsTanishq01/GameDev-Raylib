@@ -1,10 +1,10 @@
 #include "MCmovement.h"
 
 void InitCharacter(Character& character, Vector2 startPosition) {
-    character.spriteSheets[0] = LoadTexture("../Assets/WSpriteSheet.png");
-    character.spriteSheets[1] = LoadTexture("../Assets/ASpriteSheet.png");
-    character.spriteSheets[2] = LoadTexture("../Assets/SSpriteSheet.png");
-    character.spriteSheets[3] = LoadTexture("../Assets/DSpriteSheet.png");
+    character.spriteSheets[0] = LoadTexture("Assets/Player/WSpriteSheet.png");
+    character.spriteSheets[1] = LoadTexture("Assets/Player/ASpriteSheet.png");
+    character.spriteSheets[2] = LoadTexture("Assets/Player/SSpriteSheet.png");
+    character.spriteSheets[3] = LoadTexture("Assets/Player/DSpriteSheet.png");
     character.currentFrame = 0;
     character.currentDirection = 0;
     character.animationTimer = 0.0f;

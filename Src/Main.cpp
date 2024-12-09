@@ -6,7 +6,7 @@ int main() {
 
     Character character;
     InitCharacter(character, { 400.0f, 300.0f });
-    Texture2D background = LoadTexture("../Assets/bg.png");
+    Texture2D background = LoadTexture("Assets/Level/bg.png");
     while (!WindowShouldClose()) {
         UpdateCharacter(character);
 
