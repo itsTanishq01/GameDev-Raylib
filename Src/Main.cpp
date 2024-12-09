@@ -9,25 +9,22 @@ int main() {
     InitWindow(screenWidth, screenHeight, "Detective Game");
 
     GameScreen currentScreen = LOGO;
-
-    int framesCounter = 0;          // Useful to count frames
-    Font currentfont = LoadFont("resources/fonts/setback.png");
-    Texture2D storyTeller = LoadTexture("Assets/Story/sidelook.png");
-    Texture2D dialoguBubble = LoadTexture("Assets/Story/bubbledialog.png");
+    int framesCounter = 0;
     bool showIntro = true;
-    std::vector<std::string> dialogue = {
-        "Welcome to the town of \nMistwood.",
-        "You are a detective hired \nto solve a mysterious case.",
-        "Find clues, question locals,\n and uncover the truth.",
-        "Good luck, detective!"
-    };
     int dialogueIndex = 0;
-
     bool gameStart = false;
+
+    Font currentfont;
+    Texture2D storyTeller;
+    Texture2D dialoguBubble;
+    Texture2D background;
+    std::vector<std::string> dialogue;
+
+    InitIntro(currentfont, storyTeller, dialoguBubble, background, dialogue);
 
     Character character;
     InitCharacter(character, { 400.0f, 300.0f });
-    Texture2D background = LoadTexture("Assets/Level/bg.png");
+
     SetTargetFPS(60);
     while (!WindowShouldClose()) {
         UpdateCharacter(character);
@@ -37,22 +34,22 @@ int main() {
 
         ClearBackground(RAYWHITE);
 
-       
-        if(gameStart)
+        if (gameStart)
         {
-            DrawTexture(background, 0,0, RAYWHITE);
+            DrawTexture(background, 0, 0, RAYWHITE);
             DrawCharacter(character);
         }
         else
         {
-             DrawScreen(screenWidth, screenHeight, gameStart, dialogueIndex, dialogue, currentScreen, showIntro, currentfont, storyTeller, dialoguBubble, background);
+            DrawScreen(screenWidth, screenHeight, gameStart, dialogueIndex, dialogue,
+                currentScreen, showIntro, currentfont, storyTeller, dialoguBubble, background);
         }
-        
 
         EndDrawing();
     }
 
     UnloadCharacter(character);
+    UnloadIntro(currentfont, storyTeller, dialoguBubble, background);
     CloseWindow();
 
     return 0;
