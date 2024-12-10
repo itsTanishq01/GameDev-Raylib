@@ -21,8 +21,8 @@ std::vector<Rectangle> mapRectangles = {
     {1055, 610, 865, 60},// Rectangle 16
     {1055, 990, 865, 65},// Rectangle 17
     {1880, 675, 40, 315},// Rectangle 18
-    {1055, 675, 35, 90}, // Rectangle 19
-    {1055, 860, 35, 130},// Rectangle 20
+    {1050, 675, 35, 90}, // Rectangle 19
+    {1050, 860, 35, 130},// Rectangle 20
     {865, 0, 190, 1},    // Rectangle 21
     {0, 445, 1, 165},    // Rectangle 22
     {865, 1055, 185, 1}, // Rectangle 23
@@ -34,5 +34,5 @@ void MapCollision::drawRectangles() {
     for (const auto& rect : mapRectangles) {
         DrawRectangleLines(static_cast<int>(rect.x), static_cast<int>(rect.y), static_cast<int>(rect.width), static_cast<int>(rect.height), RED); // Draw outline
     }
-    */
+    */    
 }
