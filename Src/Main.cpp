@@ -3,6 +3,7 @@
 #include "Intro.h"
 #include "MapCollision.h"
 #include "CollisionPhysics.h" // Include the CollisionPhysics header
+#include "NPC.h"
 
 int main() {
     const int screenWidth = 1920;
@@ -15,6 +16,11 @@ int main() {
 
     Character character;
     InitCharacter(character, { 400.0f, 300.0f });
+
+    NPC npc;
+    InitNPC(npc, {100.0f, 200.0f});
+
+
 
     MapCollision mapCollision;
 
@@ -29,8 +35,11 @@ int main() {
 
         if (introResources.gameState.gameStart) {
             DrawTexture(introResources.background, 0, 0, RAYWHITE);
+            DrawNPC(npc);
             DrawCharacter(character);
             mapCollision.drawRectangles(); // Draw the rectangles
+            DisplayQuestion(npc,character);
+            
         }
         else {
             DrawScreen(screenWidth, screenHeight, introResources.gameState,
@@ -43,6 +52,7 @@ int main() {
     }
 
     UnloadCharacter(character);
+    UnloadNPC(npc);
     UnloadIntroResources(introResources);
     CloseWindow();
 
