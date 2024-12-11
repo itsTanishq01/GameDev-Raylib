@@ -5,7 +5,7 @@
 - Animated character sprites (up, left, down, right) from a sprite sheet.
 - Frame-based animation to simulate running in each direction.
 - Simple texture loading and unloading for efficient memory management.
-- More Features Soon
+- Interactive NPCs
 
 ## Requirements
 - [raylib](https://www.raylib.com/) library (version 4.0 or later).
