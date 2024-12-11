@@ -41,14 +41,14 @@ void ScreenLoader(GameScreen& currentScreen, int& framesCounter)
     }
 }
 
-void DrawScreen(const int screenWidth, const int screenHeight, bool& gameStart, int& dialogueIndex, std::vector<std::string>& dialogue, GameScreen& currentScreen, bool& showIntro, Font currentfont, Texture2D storyTeller, Texture2D dialoguBubble, Texture2D background)
+void DrawScreen(const int screenWidth, const int screenHeight, GameState& gameState, std::vector<std::string>& dialogue, GameScreen& currentScreen, Font currentfont, Texture2D storyTeller, Texture2D dialoguBubble, Texture2D background)
 {
-    if (showIntro && IsKeyPressed(KEY_SPACE)) {
-        dialogueIndex++;
-        if (dialogueIndex >= dialogue.size())
+    if (gameState.showIntro && IsKeyPressed(KEY_SPACE)) {
+        gameState.dialogueIndex++;
+        if (gameState.dialogueIndex >= dialogue.size())
         {
-            showIntro = false; // End intro dialogue
-            gameStart = true;
+            gameState.showIntro = false; // End intro dialogue
+            gameState.gameStart = true;
         }
     }
 
@@ -82,12 +82,11 @@ void DrawScreen(const int screenWidth, const int screenHeight, bool& gameStart, 
         // Step 3: Draw a frosted glass overlay (white semi-transparent)
         DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Color{ 255, 255, 255, 150 }); // White with low alpha
 
-        if (showIntro)
+        if (gameState.showIntro)
         {
             DrawTexture(storyTeller, -20, 500, WHITE);
             DrawTexture(dialoguBubble, 400, 700, WHITE);
-            DrawText(dialogue[dialogueIndex].c_str(), 525, 785, 40, WHITE);
-            //DrawText("Press SPACE to continue...", 850, 800, 30, WHITE);
+            DrawText(dialogue[gameState.dialogueIndex].c_str(), 525, 785, 40, WHITE);
         }
     } break;
 
@@ -122,4 +121,29 @@ void UnloadIntro(Font& currentfont, Texture2D& storyTeller, Texture2D& dialoguBu
     UnloadTexture(storyTeller);
     UnloadTexture(dialoguBubble);
     UnloadTexture(background);
+}
+
+void InitGameState(GameState& gameState)
+{
+    gameState.framesCounter = 0;
+    gameState.showIntro = true;
+    gameState.dialogueIndex = 0;
+    gameState.gameStart = false;
+}
+
+// New function to prepare resources
+void PrepareIntroResources(IntroResources& resources)
+{
+    resources.currentScreen = LOGO;
+    InitGameState(resources.gameState);
+    InitIntro(resources.currentfont, resources.storyTeller,
+        resources.dialoguBubble, resources.background,
+        resources.dialogue);
+}
+
+// New function to unload resources
+void UnloadIntroResources(IntroResources& resources)
+{
+    UnloadIntro(resources.currentfont, resources.storyTeller,
+        resources.dialoguBubble, resources.background);
 }

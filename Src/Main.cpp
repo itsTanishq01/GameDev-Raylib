@@ -1,6 +1,8 @@
 #include "raylib.h"
 #include "MCmovement.h"
 #include "Intro.h"
+#include "MapCollision.h"
+#include "CollisionPhysics.h" // Include the CollisionPhysics header
 
 int main() {
     const int screenWidth = 1920;
@@ -8,48 +10,40 @@ int main() {
 
     InitWindow(screenWidth, screenHeight, "Detective Game");
 
-    GameScreen currentScreen = LOGO;
-    int framesCounter = 0;
-    bool showIntro = true;
-    int dialogueIndex = 0;
-    bool gameStart = false;
-
-    Font currentfont;
-    Texture2D storyTeller;
-    Texture2D dialoguBubble;
-    Texture2D background;
-    std::vector<std::string> dialogue;
-
-    InitIntro(currentfont, storyTeller, dialoguBubble, background, dialogue);
+    IntroResources introResources;
+    PrepareIntroResources(introResources);
 
     Character character;
     InitCharacter(character, { 400.0f, 300.0f });
 
+    MapCollision mapCollision;
+
     SetTargetFPS(60);
     while (!WindowShouldClose()) {
         UpdateCharacter(character);
-        ScreenLoader(currentScreen, framesCounter);
+        ScreenLoader(introResources.currentScreen, introResources.gameState.framesCounter);
 
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
 
-        if (gameStart)
-        {
-            DrawTexture(background, 0, 0, RAYWHITE);
+        if (introResources.gameState.gameStart) {
+            DrawTexture(introResources.background, 0, 0, RAYWHITE);
             DrawCharacter(character);
+            mapCollision.drawRectangles(); // Draw the rectangles
         }
-        else
-        {
-            DrawScreen(screenWidth, screenHeight, gameStart, dialogueIndex, dialogue,
-                currentScreen, showIntro, currentfont, storyTeller, dialoguBubble, background);
+        else {
+            DrawScreen(screenWidth, screenHeight, introResources.gameState,
+                introResources.dialogue, introResources.currentScreen,
+                introResources.currentfont, introResources.storyTeller,
+                introResources.dialoguBubble, introResources.background);
         }
 
         EndDrawing();
     }
 
     UnloadCharacter(character);
-    UnloadIntro(currentfont, storyTeller, dialoguBubble, background);
+    UnloadIntroResources(introResources);
     CloseWindow();
 
     return 0;
