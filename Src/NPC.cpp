@@ -1,7 +1,7 @@
 #include "NPC.h"
 #include "CollisionPhysics.h"
 #include "MapCollision.h"
-#include<iostream>
+
 
 void InitNPC(NPC& npc, Vector2 startPosition) {
     npc.spriteSheet = LoadTexture("Assets/NpcSingle/startgirl.png");
@@ -13,25 +13,25 @@ void InitNPC(NPC& npc, Vector2 startPosition) {
 void DrawNPC(const NPC& npc) {
     DrawTextureV(npc.spriteSheet, npc.position , WHITE);
 
-    /*Draw collision box(for debugging purposes)
+    //Draw collision box(for debugging purposes)
     DrawRectangleLines(
         static_cast<int>(npc.collisionBox.x),
         static_cast<int>(npc.collisionBox.y),
         static_cast<int>(npc.collisionBox.width),
         static_cast<int>(npc.collisionBox.height),
-        RED
-    );*/
+        BLACK
+    );
 }
 
-bool IsInteractable(const NPC &npc,const Character& character)
+bool IsInteractable(const NPC &npc,Character& character)
 {
     if(CheckCollisionRecs(npc.collisionBox,character.collisionBox))
-        return true;
+        return true;   
     else 
         return false;
 }
 
-void DisplayQuestion(const NPC &npc,const Character& character)
+void DisplayQuestion(const NPC &npc,Character& character)
 {
     Font font = LoadFont("resources/fonts/setback.png");
     if(IsInteractable(npc,character))
@@ -44,6 +44,8 @@ void DisplayQuestion(const NPC &npc,const Character& character)
         }
     } 
 }
+
+
 
 void UnloadNPC(NPC& npc) {
     UnloadTexture(npc.spriteSheet);

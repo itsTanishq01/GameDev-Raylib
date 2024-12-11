@@ -20,8 +20,6 @@ int main() {
     NPC npc;
     InitNPC(npc, {100.0f, 200.0f});
 
-
-
     MapCollision mapCollision;
 
     SetTargetFPS(60);

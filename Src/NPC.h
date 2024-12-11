@@ -18,7 +18,7 @@ struct NPC {
 void InitNPC(NPC& npc, Vector2 startPosition);
 void DrawNPC(const NPC& npc);
 bool IsInteractable(const NPC& npc,const Character& character);
-void DisplayQuestion(const NPC &npc,const Character& character);
+void DisplayQuestion(const NPC &npc, Character& character);
 void UnloadNPC(NPC& npc);
 
 #endif // NPC_H

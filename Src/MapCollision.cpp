@@ -26,7 +26,8 @@ std::vector<Rectangle> mapRectangles = {
     {865, 0, 190, 1},    // Rectangle 21
     {0, 445, 1, 165},    // Rectangle 22
     {865, 1055, 185, 1}, // Rectangle 23
-    {1919, 449, 1, 161}  // Rectangle 24
+    {1919, 449, 1, 161},  // Rectangle 24
+    {105, 205, 45, 45}  //Girl
 };
 
 void MapCollision::drawRectangles() {
