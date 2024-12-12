@@ -63,8 +63,8 @@ void DrawScreen(const int screenWidth, const int screenHeight, GameState& gameSt
     case TITLE:
     {
         DrawRectangle(0, 0, screenWidth, screenHeight, SKYBLUE);
-        DrawTextEx(currentfont, "Detective Game", { 475.0, 300.0 }, 130, 10, BLACK);
-        DrawTextEx(currentfont, "PRESS ENTER to GAMEPLAY SCREEN", { 500, 800 }, 30, 5, DARKGREEN);
+        DrawTextEx(currentfont, "Detective Game", { 400.0, 300.0 }, 130, 10, BLACK);
+        DrawTextEx(currentfont, "PRESS ENTER to GAMEPLAY SCREEN", { 600, 800 }, 30, 5, DARKGREEN);
     } break;
 
     case INTRO:
@@ -86,7 +86,7 @@ void DrawScreen(const int screenWidth, const int screenHeight, GameState& gameSt
         {
             DrawTexture(storyTeller, -20, 500, WHITE);
             DrawTexture(dialoguBubble, 400, 700, WHITE);
-            DrawText(dialogue[gameState.dialogueIndex].c_str(), 525, 785, 40, WHITE);
+            DrawTextEx(currentfont, dialogue[gameState.dialogueIndex].c_str(), {525, 785}, 35, 5 ,  WHITE);
         }
     } break;
 
@@ -103,13 +103,13 @@ void DrawScreen(const int screenWidth, const int screenHeight, GameState& gameSt
 
 void InitIntro(Font& currentfont, Texture2D& storyTeller, Texture2D& dialoguBubble, Texture2D& background, std::vector<std::string>& dialogue)
 {
-    currentfont = LoadFont("resources/fonts/setback.png");
+    currentfont = LoadFont("Assets/Story/setback.png");
     storyTeller = LoadTexture("Assets/Story/sidelook.png");
     dialoguBubble = LoadTexture("Assets/Story/bubbledialog.png");
     background = LoadTexture("Assets/Level/bg.png");
     dialogue = {
         "Welcome to the town of \n Mistwood.",
-        "You are a detective hired \n to solve a mysterious case.",
+        "You are a detective hired\nto solve a mysterious case.",
         "Find clues, question locals,\n and uncover the truth.",
         "Good luck, detective!"
     };
