@@ -83,7 +83,7 @@ void DrawCharacter(const Character& character) {
         static_cast<int>(character.collisionBox.width),
         static_cast<int>(character.collisionBox.height),
         RED
-    );*/ 
+    );*/
 }
 
 void UnloadCharacter(Character& character) {

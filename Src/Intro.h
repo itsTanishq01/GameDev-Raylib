@@ -28,7 +28,7 @@ struct IntroResources {
     std::vector<std::string> dialogue;
 };
 
-// Function declarations
+
 void ScreenLoader(GameScreen& currentScreen, int& framesCounter);
 void DrawScreen(const int screenWidth, const int screenHeight, GameState& gameState, std::vector<std::string>& dialogue, GameScreen& currentScreen, Font currentfont, Texture2D storyTeller, Texture2D dialoguBubble, Texture2D background);
 void InitIntro(Font& currentfont, Texture2D& storyTeller, Texture2D& dialoguBubble, Texture2D& background, std::vector<std::string>& dialogue);
