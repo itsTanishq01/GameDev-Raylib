@@ -17,8 +17,12 @@ int main() {
     Character character;
     InitCharacter(character, { 400.0f, 300.0f });
 
-    NPC npc;
-    InitNPC(npc, {100.0f, 200.0f});
+    IntroNpcResources introNpcs;
+    InitNpcRsrc(introNpcs);
+    std::vector<NPC> npcs;
+    InitNPCs(npcs ,introNpcs.startPositions , introNpcs.spritePath , introNpcs.dialogBoxPath );
+
+
 
     MapCollision mapCollision;
 
@@ -33,10 +37,10 @@ int main() {
 
         if (introResources.gameState.gameStart) {
             DrawTexture(introResources.background, 0, 0, RAYWHITE);
-            DrawNPC(npc);
+            DrawNPCs(npcs);
             DrawCharacter(character);
             mapCollision.drawRectangles(); // Draw the rectangles
-            DisplayQuestion(npc,character);
+            DisplayQuestion(npcs,character);
             
         }
         else {
@@ -50,7 +54,7 @@ int main() {
     }
 
     UnloadCharacter(character);
-    UnloadNPC(npc);
+    UnloadNPCs(npcs);
     UnloadIntroResources(introResources);
     CloseWindow();
 

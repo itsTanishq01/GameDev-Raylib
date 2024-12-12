@@ -1,6 +1,6 @@
 #include "Intro.h"
 
-void ScreenLoader(GameScreen& currentScreen, int& framesCounter)
+void ScreenLoader(GameScreen &currentScreen, int &framesCounter)
 {
     switch (currentScreen)
     {

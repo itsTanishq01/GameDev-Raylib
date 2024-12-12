@@ -76,14 +76,14 @@ void DrawCharacter(const Character& character) {
     Vector2 origin = { 0.0f, 0.0f };
     DrawTexturePro(currentSpriteSheet, sourceRec, destRec, origin, 0.0f, WHITE);
 
-    //Draw collision box(for debugging purposes)
+    /*Draw collision box(for debugging purposes)
     DrawRectangleLines(
         static_cast<int>(character.collisionBox.x),
         static_cast<int>(character.collisionBox.y),
         static_cast<int>(character.collisionBox.width),
         static_cast<int>(character.collisionBox.height),
         RED
-    );
+    );*/
 }
 
 void UnloadCharacter(Character& character) {
