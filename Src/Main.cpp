@@ -4,12 +4,17 @@
 #include "MapCollision.h"
 #include "CollisionPhysics.h" // Include the CollisionPhysics header
 #include "NPC.h"
-
+#include <string.h>
+#include "input.h"
 int main() {
     const int screenWidth = 1920;
     const int screenHeight = 1056;
-
+    
+    std::string answers[4] = {"","","",""};
     InitWindow(screenWidth, screenHeight, "Detective Game");
+    
+    InputResources inpResource;
+    PrepareInputResources(inpResource);
 
     IntroResources introResources;
     PrepareIntroResources(introResources);
@@ -17,8 +22,10 @@ int main() {
     Character character;
     InitCharacter(character, { 400.0f, 300.0f });
 
-    NPC npc;
-    InitNPC(npc, {100.0f, 200.0f});
+    IntroNpcResources introNpcs;
+    InitNpcRsrc(introNpcs);
+    std::vector<NPC> npcs;
+    InitNPCs(npcs ,introNpcs.startPositions , introNpcs.spritePath , introNpcs.dialogBoxPath );
 
     MapCollision mapCollision;
 
@@ -33,10 +40,10 @@ int main() {
 
         if (introResources.gameState.gameStart) {
             DrawTexture(introResources.background, 0, 0, RAYWHITE);
-            DrawNPC(npc);
+            DrawNPCs(npcs);
             DrawCharacter(character);
             mapCollision.drawRectangles(); // Draw the rectangles
-            DisplayQuestion(npc,character);
+            DisplayQuestion(npcs,character,inpResource);
             
         }
         else {
@@ -50,7 +57,7 @@ int main() {
     }
 
     UnloadCharacter(character);
-    UnloadNPC(npc);
+    UnloadNPCs(npcs);
     UnloadIntroResources(introResources);
     CloseWindow();
 

@@ -5,10 +5,10 @@
 extern std::vector<Rectangle> mapRectangles; // Declare the map rectangles as an external variable
 
 void InitCharacter(Character& character, Vector2 startPosition) {
-    character.spriteSheets[0] = LoadTexture("Assets/Player/WSpriteSheet.png");
-    character.spriteSheets[1] = LoadTexture("Assets/Player/ASpriteSheet.png");
-    character.spriteSheets[2] = LoadTexture("Assets/Player/SSpriteSheet.png");
-    character.spriteSheets[3] = LoadTexture("Assets/Player/DSpriteSheet.png");
+    character.spriteSheets[0] = LoadTexture("../Assets/Player/WSpriteSheet.png");
+    character.spriteSheets[1] = LoadTexture("../Assets/Player/ASpriteSheet.png");
+    character.spriteSheets[2] = LoadTexture("../Assets/Player/SSpriteSheet.png");
+    character.spriteSheets[3] = LoadTexture("../Assets/Player/DSpriteSheet.png");
     character.currentFrame = 0;
     character.currentDirection = 0;
     character.animationTimer = 0.0f;
@@ -20,22 +20,22 @@ void UpdateCharacter(Character& character) {
     Vector2 originalPosition = character.position;
     bool isMoving = false;
 
-    if (IsKeyDown(KEY_W)) {
+    if (IsKeyDown(KEY_UP)) {
         character.currentDirection = 0;
         character.position.y -= 200 * GetFrameTime();
         isMoving = true;
     }
-    else if (IsKeyDown(KEY_A)) {
+    else if (IsKeyDown(KEY_LEFT)) {
         character.currentDirection = 1;
         character.position.x -= 200 * GetFrameTime();
         isMoving = true;
     }
-    else if (IsKeyDown(KEY_S)) {
+    else if (IsKeyDown(KEY_DOWN)) {
         character.currentDirection = 2;
         character.position.y += 200 * GetFrameTime();
         isMoving = true;
     }
-    else if (IsKeyDown(KEY_D)) {
+    else if (IsKeyDown(KEY_RIGHT)) {
         character.currentDirection = 3;
         character.position.x += 200 * GetFrameTime();
         isMoving = true;
@@ -76,14 +76,14 @@ void DrawCharacter(const Character& character) {
     Vector2 origin = { 0.0f, 0.0f };
     DrawTexturePro(currentSpriteSheet, sourceRec, destRec, origin, 0.0f, WHITE);
 
-    //Draw collision box(for debugging purposes)
+    /*Draw collision box(for debugging purposes)
     DrawRectangleLines(
         static_cast<int>(character.collisionBox.x),
         static_cast<int>(character.collisionBox.y),
         static_cast<int>(character.collisionBox.width),
         static_cast<int>(character.collisionBox.height),
         RED
-    );
+    );*/
 }
 
 void UnloadCharacter(Character& character) {
